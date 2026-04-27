@@ -20,6 +20,16 @@ const fallbackData = {
     description:
       "I am a developer who enjoys creating websites that are visually strong, responsive, and easy to use. I work with React.js for the frontend and Node.js for backend services, and I like turning ideas into polished web products."
   },
+  resume: {
+    title: "Resume",
+    summary:
+      "Frontend-focused MERN developer with hands-on experience building responsive React interfaces, Express APIs, and portfolio-ready web products.",
+    highlights: [
+      "React.js, JavaScript, HTML5, and CSS3 for clean user interfaces",
+      "Node.js and Express.js for practical backend APIs",
+      "GitHub workflow for version control and project collaboration"
+    ]
+  },
   skills: [
     "React.js",
     "JavaScript",
@@ -99,10 +109,9 @@ function App() {
       <header className="topbar">
         <div className="brand">Pratik.dev</div>
         <nav className="nav">
-          <a href="#about">About</a>
-          <a href="#skills">Skills</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
+          <a href="#resume">Resume</a>
+          <a href="#contact">Contact Me</a>
+          <a href="#about">About Me</a>
         </nav>
       </header>
 
@@ -144,6 +153,19 @@ function App() {
             <h2>{data.about.title}</h2>
           </div>
           <p className="section-text">{data.about.description}</p>
+        </section>
+
+        <section className="section resume-section" id="resume">
+          <div className="section-heading">
+            <p className="eyebrow">Resume</p>
+            <h2>{data.resume.title}</h2>
+          </div>
+          <p className="section-text">{data.resume.summary}</p>
+          <ul className="resume-list">
+            {data.resume.highlights.map((highlight) => (
+              <li key={highlight}>{highlight}</li>
+            ))}
+          </ul>
         </section>
 
         <section className="section" id="skills">
@@ -201,4 +223,3 @@ function App() {
 }
 
 export default App;
-
