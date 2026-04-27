@@ -1,91 +1,43 @@
 # Portfolio Website
 
-A full-stack portfolio website built with React on the frontend and Node.js with Express on the backend.
+A full-stack portfolio website built with Next.js. The frontend pages and backend API routes live in one app.
 
 ## Project Structure
 
 ```text
-portfolio/
-  client/   # React portfolio website
-  server/   # Express API with portfolio data
+uploadable/
+  app/                 # Next.js pages, layout, styles, and API routes
+  app/api/portfolio    # Backend route that returns portfolio data
+  app/api/contact      # Backend route for contact form submissions
+  lib/portfolio.js     # Portfolio content used by the page and API
 ```
-
-## Features
-
-- Personal hero section
-- About section
-- Skills and tools section
-- Project showcase cards
-- Contact section
-- Backend API for portfolio content
-- Free-hosting friendly deployment setup
 
 ## Local Development
 
-This machine currently has `node` available but not `npm`, so dependencies have not been installed here yet.
-
-Once `npm` is available on your system, run:
-
 ```bash
-cd /Users/pratik/Documents/portfolio/client
+cd /Users/pratik/Documents/portfolio/uploadable
 npm install
 npm run dev
 ```
 
-In a second terminal:
+The app runs at `http://localhost:3000`.
 
-```bash
-cd /Users/pratik/Documents/portfolio/server
-npm install
-npm run dev
-```
+Useful backend endpoints:
 
-The frontend will run on `http://localhost:5173` and the backend on `http://localhost:4000`.
+- `GET /api/portfolio`
+- `POST /api/contact`
 
-## Customizing Your Portfolio
+## Deploy
 
-Update your main content here:
+Deploy the `uploadable` folder as a Next.js app on Vercel, Render, Railway, or another Node host.
 
-- Frontend text and layout: [client/src/App.jsx](/Users/pratik/Documents/portfolio/client/src/App.jsx)
-- Backend portfolio data: [server/data/portfolio.js](/Users/pratik/Documents/portfolio/server/data/portfolio.js)
-- Styling: [client/src/styles.css](/Users/pratik/Documents/portfolio/client/src/styles.css)
+For Render, this folder includes `render.yaml`:
 
-## Recommended Free Hosting
+- Build command: `npm install`
+- Start command: `npm start`
 
-### Option 1: Vercel + Render
+## Customize
 
-- Host the React frontend on [Vercel](https://vercel.com/)
-- Host the Node.js backend on [Render](https://render.com/)
-
-This is the easiest free combination for a React + Node portfolio.
-
-### Deploy the backend on Render
-
-1. Push this project to GitHub.
-2. In Render, create a new Web Service from the `server` folder, or use the included [render.yaml](/Users/pratik/Documents/portfolio/render.yaml).
-3. Use:
-   - Build command: `npm install`
-   - Start command: `npm start`
-4. After deployment, copy the backend URL.
-
-### Deploy the frontend on Vercel
-
-1. Import the repo into Vercel.
-2. Set the root directory to `client`.
-3. Add an environment variable:
-   - `VITE_API_URL=https://your-render-service.onrender.com`
-4. Deploy.
-
-## Alternative Free Hosting
-
-- Netlify for the frontend
-- Railway or Render for the backend
-
-## Notes
-
-- The contact form currently displays your contact details instead of submitting messages to a database or email service.
-- If you want, the next step can be adding:
-  - a working email contact form
-  - resume download
-  - admin-editable projects
-  - animations and dark/light theme toggle
+- Main content: `lib/portfolio.js`
+- Page layout: `app/page.jsx`
+- Styling: `app/globals.css`

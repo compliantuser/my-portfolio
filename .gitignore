@@ -6,4 +6,5 @@ dist
 coverage
 .tools
 *.tar.gz
-uploadable
+node-v*-darwin-arm64/
+.next*

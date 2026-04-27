@@ -1,114 +1,14 @@
-import { useEffect, useState } from "react";
+import ContactForm from "./components/ContactForm";
+import portfolio from "../lib/portfolio";
 
-const fallbackData = {
-  profile: {
-    name: "Pratik",
-    role: "React.js and Node.js Developer",
-    intro:
-      "I build modern web experiences with clean interfaces, practical backend systems, and a strong focus on user experience.",
-    location: "India",
-    email: "your-email@example.com",
-    tagline: "Building useful products with thoughtful design and reliable code."
-  },
-  stats: [
-    { label: "Projects", value: "06+" },
-    { label: "Tech Stack", value: "MERN" },
-    { label: "Focus", value: "Frontend + API" }
-  ],
-  about: {
-    title: "About Me",
-    description:
-      "I am a developer who enjoys creating websites that are visually strong, responsive, and easy to use. I work with React.js for the frontend and Node.js for backend services, and I like turning ideas into polished web products."
-  },
-  resume: {
-    title: "Resume",
-    summary:
-      "Frontend-focused MERN developer with hands-on experience building responsive React interfaces, Express APIs, and portfolio-ready web products.",
-    highlights: [
-      "React.js, JavaScript, HTML5, and CSS3 for clean user interfaces",
-      "Node.js and Express.js for practical backend APIs",
-      "GitHub workflow for version control and project collaboration"
-    ]
-  },
-  skills: [
-    "React.js",
-    "JavaScript",
-    "Node.js",
-    "Express.js",
-    "HTML5",
-    "CSS3",
-    "REST APIs",
-    "GitHub"
-  ],
-  projects: [
-    {
-      title: "Portfolio Website",
-      summary:
-        "A personal website to present my projects, technical skills, and contact information in one place.",
-      stack: ["React", "CSS", "Node.js"],
-      link: "#"
-    },
-    {
-      title: "E-Commerce UI",
-      summary:
-        "A modern shopping interface with product cards, filters, and a responsive layout.",
-      stack: ["React", "JavaScript", "CSS"],
-      link: "#"
-    },
-    {
-      title: "Task Manager API",
-      summary:
-        "A backend API for managing personal tasks with CRUD operations and organized routes.",
-      stack: ["Node.js", "Express", "REST API"],
-      link: "#"
-    }
-  ],
-  contact: {
-    title: "Let's Work Together",
-    text:
-      "If you want a portfolio, business website, or web app built with React and Node.js, feel free to reach out.",
-    email: "your-email@example.com"
-  }
-};
-
-const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:4000";
-
-function App() {
-  const [data, setData] = useState(fallbackData);
-
-  useEffect(() => {
-    let isMounted = true;
-
-    async function loadPortfolio() {
-      try {
-        const response = await fetch(`${apiUrl}/api/portfolio`);
-
-        if (!response.ok) {
-          throw new Error("Unable to load portfolio data");
-        }
-
-        const payload = await response.json();
-
-        if (isMounted) {
-          setData(payload);
-        }
-      } catch (error) {
-        console.warn("Using fallback portfolio data.", error);
-      }
-    }
-
-    loadPortfolio();
-
-    return () => {
-      isMounted = false;
-    };
-  }, []);
+export default function HomePage() {
+  const data = portfolio;
 
   return (
     <div className="page-shell">
       <header className="topbar">
         <div className="brand">Pratik.dev</div>
-        <nav className="nav">
+        <nav className="nav" aria-label="Main navigation">
           <a href="#resume">Resume</a>
           <a href="#contact">Contact Me</a>
           <a href="#about">About Me</a>
@@ -127,13 +27,13 @@ function App() {
               <a className="button primary" href="#projects">
                 View My Work
               </a>
-              <a className="button secondary" href={`mailto:${data.profile.email}`}>
+              <a className="button secondary" href="#contact">
                 Contact Me
               </a>
             </div>
           </div>
 
-          <div className="hero-card">
+          <aside className="hero-card" aria-label="Quick portfolio snapshot">
             <p className="card-title">Quick Snapshot</p>
             <ul className="stat-grid">
               {data.stats.map((stat) => (
@@ -144,7 +44,7 @@ function App() {
               ))}
             </ul>
             <p className="mini-note">Based in {data.profile.location}</p>
-          </div>
+          </aside>
         </section>
 
         <section className="section" id="about">
@@ -207,19 +107,18 @@ function App() {
         </section>
 
         <section className="section contact-panel" id="contact">
-          <div>
+          <div className="contact-copy">
             <p className="eyebrow">Contact</p>
             <h2>{data.contact.title}</h2>
             <p className="section-text">{data.contact.text}</p>
+            <a className="email-link" href={`mailto:${data.contact.email}`}>
+              {data.contact.email}
+            </a>
           </div>
 
-          <a className="button primary" href={`mailto:${data.contact.email}`}>
-            {data.contact.email}
-          </a>
+          <ContactForm />
         </section>
       </main>
     </div>
   );
 }
-
-export default App;
