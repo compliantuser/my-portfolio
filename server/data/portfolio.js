@@ -18,6 +18,16 @@ const portfolio = {
     description:
       "I am a passionate web developer focused on building responsive and clean digital products. My main stack includes React.js for frontend interfaces and Node.js with Express for backend development. I enjoy designing experiences that not only look good but also solve real problems."
   },
+  resume: {
+    title: "Resume",
+    summary:
+      "Frontend-focused MERN developer with hands-on experience building responsive React interfaces, Express APIs, and portfolio-ready web products.",
+    highlights: [
+      "React.js, JavaScript, HTML5, and CSS3 for clean user interfaces",
+      "Node.js and Express.js for practical backend APIs",
+      "GitHub workflow for version control and project collaboration"
+    ]
+  },
   skills: [
     "React.js",
     "Node.js",
@@ -61,4 +71,3 @@ const portfolio = {
 };
 
 export default portfolio;
-
